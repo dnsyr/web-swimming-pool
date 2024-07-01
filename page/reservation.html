@@ -18,21 +18,6 @@
 		<title>Nilam Public Swimming Pool</title>
 
 		<style>
-			form {
-				margin-bottom: 20px;
-			}
-			input {
-				padding: 10px;
-				margin: 5px;
-			}
-			button {
-				padding: 10px;
-			}
-			#qrcode {
-				border: 1px solid #ddd;
-				padding: 10px;
-				margin-bottom: 20px;
-			}
 			#result {
 				margin-top: 20px;
 			}
@@ -43,7 +28,7 @@
 	</head>
 	<body>
 		<!-- Navbar -->
-		<div class="navbar bg-base-100">
+		<div class="sticky top-0 z-50 navbar bg-secondary text-secondary-content">
 			<div class="navbar-start">
 				<div class="dropdown">
 					<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -90,38 +75,259 @@
 			<div class="navbar-center">
 				<a class="text-xl font-bold" href="home-page.html">Nilam Pool</a>
 			</div>
+			<div class="navbar-end">
+				<label class="swap swap-rotate">
+					<!-- this hidden checkbox controls the state -->
+					<input type="checkbox" class="theme-controller" value="dim" />
+
+					<!-- sun icon -->
+					<svg
+						class="swap-off h-8 w-8 fill-current"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+					>
+						<path
+							d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"
+						/>
+					</svg>
+
+					<!-- moon icon -->
+					<svg
+						class="swap-on h-8 w-8 fill-current"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+					>
+						<path
+							d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+						/>
+					</svg>
+				</label>
+			</div>
 		</div>
 		<!-- End Navbar -->
 
 		<!-- Reservation Page -->
-		<h3>Reservation</h3>
+		<div class="my-12 flex justify-center">
+			<div
+				class="card bg-neutral text-neutral-content w-1/2 shrink-0 shadow-2xl"
+			>
+				<h3 class="text-center font-bold text-2xl mt-8">Reservation</h3>
+				<form id="reserveForm" class="card-body">
+					<!-- Data -->
+					<h3 class="text-lg font-medium">Personal Data</h3>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text text-neutral-content">Email</span>
+						</label>
+						<input
+							id="email"
+							type="email"
+							placeholder="email@gmail.com"
+							class="input input-bordered text-[black] font-medium"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text text-neutral-content">Name</span>
+						</label>
+						<input
+							id="name"
+							type="text"
+							placeholder="Dnsy"
+							class="input input-bordered text-[black] font-medium"
+							required
+						/>
+					</div>
 
-		<form id="qrcodeForm">
-			<input type="text" id="name" placeholder="Enter name" required />
-			<input
-				type="number"
-				id="ticket"
-				placeholder="Enter ticket count"
-				required
-			/>
-			<input
-				type="text"
-				id="bundle"
-				placeholder="Enter bundle details"
-				required
-			/>
-			<button type="submit">Generate QR Code</button>
-		</form>
+					<!-- Ticket -->
+					<h3 class="text-lg font-medium mt-2">Ticket</h3>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text text-neutral-content">Adult</span>
+						</label>
+						<div class="join join-horizontal">
+							<button
+								type="button"
+								class="btn btn-secondary join-item"
+								onclick="decrementTicketAdult()"
+							>
+								-
+							</button>
+							<input
+								id="ticketAdult"
+								type="number"
+								value="0"
+								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								disabled
+							/>
+							<input
+								id="hiddenTicketAdult"
+								type="hidden"
+								value="0"
+								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								disabled
+							/>
+							<button
+								type="button"
+								class="btn btn-secondary join-item"
+								onclick="incrementTicketAdult()"
+							>
+								+
+							</button>
+						</div>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text text-neutral-content">Kids</span>
+						</label>
+						<div class="join join-horizontal">
+							<button
+								type="button"
+								class="btn btn-secondary join-item"
+								onclick="decrementTicketKid()"
+							>
+								-
+							</button>
+							<input
+								id="ticketKid"
+								type="number"
+								value="0"
+								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								disabled
+							/>
+							<input
+								id="hiddenTicketKid"
+								type="hidden"
+								value="0"
+								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								disabled
+							/>
+							<button
+								type="button"
+								class="btn btn-secondary join-item"
+								onclick="incrementTicketKid()"
+							>
+								+
+							</button>
+						</div>
+					</div>
 
-		<div id="qrcode"></div>
-		<a id="downloadLink" download="qrcode.png">Download QR Code</a>
-		<input type="file" id="fileInput" accept="image/*" />
-		<div id="reader"></div>
-		<canvas id="canvas"></canvas>
+					<!-- Additional Offers -->
+					<div class="mt-2">
+						<h4 class="text-lg font-medium">Additional Offers</h4>
+
+						<div class="form-control">
+							<label class="label cursor-pointer">
+								<span class="label-text text-neutral-content"
+									>Snacks and Lunch</span
+								>
+								<input
+									id="snacksLunch"
+									type="checkbox"
+									class="checkbox checkbox-secondary"
+								/>
+							</label>
+						</div>
+						<div class="form-control">
+							<label class="label cursor-pointer">
+								<span class="label-text text-neutral-content"
+									>Swimming Kit</span
+								>
+								<input
+									id="swimKit"
+									type="checkbox"
+									class="checkbox checkbox-secondary"
+								/>
+							</label>
+						</div>
+					</div>
+
+					<!-- Discount Voucher -->
+					<h4 class="text-lg font-medium mt-2">Discount Voucher</h4>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text text-neutral-content">Voucher</span>
+						</label>
+						<input
+							id="voucher"
+							type="text"
+							placeholder="D10000"
+							class="input input-bordered text-[black] font-medium"
+						/>
+					</div>
+
+					<!-- Price -->
+					<div
+						class="card px-5 py-3 bg-accent text-accent-content w-1/4 shadow-2xl fixed bottom-[2rem] right-[1rem]"
+					>
+						<h3 class="text-xl font-semibold mb-2 text-center">Receipt</h3>
+						<h4 class="font-medium text-lg">Ticket</h4>
+						<p id="priceTicketAdult" class="text-base">
+							Adult: 0 x Rp30,000 = Rp0,000
+						</p>
+						<p id="priceTicketKid" class="text-base">
+							Kid: 0 x Rp25,000 = Rp0,000
+						</p>
+						<h4 class="font-medium text-lg">Additional</h4>
+						<p id="priceSnacks" class="text-base">Snacks & Lunch: No</p>
+						<p id="priceSwimKit" class="text-base">Swimming Kit: No</p>
+						<h4 class="font-medium text-lg">Voucher</h4>
+						<p id="voucherInfo" class="text-base">Voucher: Invalid</p>
+						<p id="voucherDiscount" class="text-base">Discount: - Rp0,000</p>
+						<h4 id="totalPrice" class="font-medium text-lg mt-8">
+							Total Price: Rp0,000
+						</h4>
+					</div>
+
+					<div class="form-control mt-6">
+						<button id="reserveBtn" type="submit" class="btn btn-primary">
+							Reserve
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Confirm Modal -->
+		<dialog id="confirmModal" class="modal">
+			<div
+				class="modal-box flex flex-col items-center bg-secondary text-secondary-content"
+			>
+				<h3 class="text-lg font-bold">Thanks for Reserved!</h3>
+				<p class="py-4">Please save QR Code and scan QR at Gate later!</p>
+
+				<div id="qrcode"></div>
+				<a
+					class="mt-2 mb-5 font-semibold text-lg"
+					id="downloadLink"
+					download="qrcode.png"
+					>Download QR Code</a
+				>
+
+				<input
+					type="file"
+					id="fileInput"
+					accept="image/*"
+					class="file-input file-input-bordered file-input-accent w-full max-w-xs"
+				/>
+
+				<canvas id="canvas" class="w-0 h-0"></canvas>
+				<div id="reader"></div>
+				<div class="modal-action">
+					<form method="dialog">
+						<!-- if there is a button in form, it will close the modal -->
+						<button class="btn btn-accent">Close</button>
+					</form>
+				</div>
+			</div>
+		</dialog>
 		<!-- End Reservation Page -->
 
 		<!-- Footer -->
-		<footer class="footer bg-secondary text-base-content p-10 items-center">
+		<footer
+			class="footer bg-secondary text-secondary-content p-10 items-center"
+		>
 			<nav>
 				<h6 class="footer-title">Location</h6>
 				<iframe
@@ -209,6 +415,7 @@
 		<!-- End Footer -->
 
 		<script src="../js/index.js"></script>
+		<script src="../js/reservation.js"></script>
 		<script type="module">
 			import { myModule } from "../js/tailwind.config.js";
 			myModule();
@@ -219,37 +426,57 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 		<script>
 			document
-				.getElementById("qrcodeForm")
-				.addEventListener("submit", function (e) {
-					e.preventDefault();
+				.getElementById("reserveForm")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
 
-					// Create an object from form inputs
-					let data = {
-						name: document.getElementById("name").value,
-						ticket: document.getElementById("ticket").value,
-						bundle: document.getElementById("bundle").value,
-					};
+					if (
+						document.getElementById("ticketAdult").value == 0 &&
+						document.getElementById("ticketKid").value == 0
+					) {
+						alert("Please reserved 1 ticket!");
+						return;
+					} else {
+						// Create an object from form inputs
+						let data = {
+							email: document.getElementById("email").value,
+							name: document.getElementById("name").value,
+							ticketAdult: document.getElementById("ticketAdult").value,
+							ticketKid: document.getElementById("ticketKid").value,
+							snacksLunch: document.getElementById("snacksLunch").checked
+								? "Yes"
+								: "No",
+							swimKit: document.getElementById("swimKit").checked
+								? "Yes"
+								: "No",
+							voucher: document.getElementById("voucher").value
+								? document.getElementById("voucher").value
+								: "Invalid",
+						};
 
-					// Convert object to JSON string
-					const jsonData = JSON.stringify(data);
+						// Convert object to JSON string
+						const jsonData = JSON.stringify(data);
 
-					const qrcodeContainer = document.getElementById("qrcode");
-					qrcodeContainer.innerHTML = ""; // Clear previous QR code
-					const qrCode = new QRCode(qrcodeContainer, {
-						text: jsonData,
-						width: 128,
-						height: 128,
-					});
+						const qrcodeContainer = document.getElementById("qrcode");
+						qrcodeContainer.innerHTML = ""; // Clear previous QR code
+						const qrCode = new QRCode(qrcodeContainer, {
+							text: jsonData,
+							width: 128,
+							height: 128,
+						});
 
-					// Wait for QR code to be generated
-					setTimeout(() => {
-						// Convert QR code to data URL and create a download link
-						const canvas = qrcodeContainer.querySelector("canvas");
-						const dataUrl = canvas.toDataURL("image/png");
-						const downloadLink = document.getElementById("downloadLink");
-						downloadLink.href = dataUrl;
-						downloadLink.style.display = "block";
-					}, 500);
+						// Wait for QR code to be generated
+						setTimeout(() => {
+							// Convert QR code to data URL and create a download link
+							const canvas = qrcodeContainer.querySelector("canvas");
+							const dataUrl = canvas.toDataURL("image/png");
+							const downloadLink = document.getElementById("downloadLink");
+							downloadLink.href = dataUrl;
+							downloadLink.style.display = "block";
+
+							document.getElementById("confirmModal").showModal();
+						}, 500);
+					}
 				});
 
 			// Handle file input change event to scan QR code
@@ -271,13 +498,32 @@
 							html5QrCode
 								.scanFile(file, true)
 								.then((decodedText) => {
-									const data = JSON.parse(decodedText);
-									document.getElementById("reader").innerHTML = `
-                                <h3>Scanned Data:</h3>
-                                <p>Name: ${data.name}</p>
-                                <p>Ticket: ${data.ticket}</p>
-                                <p>Bundle: ${data.bundle}</p>
-                            `;
+									try {
+										const data = JSON.parse(decodedText);
+										document.getElementById("reader").innerHTML = `
+			                              <h3 class="text-center font-semibold text-lg my-2">Scanned Data</h3>
+																		<h4 class="font-semibold text-base mt-3 mb-1">Personal Data</h4>
+			                              <p>Email: ${data.email}</p>
+			                              <p>Name: ${data.name}</p>
+																		<h4 class="font-semibold text-base mt-3 mb-1">Ticket</h4>
+																		<p>Adult: ${data.ticketAdult}</p>
+																		<p>Kid: ${data.ticketKid}</p>
+																		<h4 class="font-semibold text-base mt-3 mb-1">Additional</h4>
+																		<p>Snacks & Lunch: ${data.snacksLunch}</p>
+																		<p>Swim Kit: ${data.swimKit}</p>
+																		<h4 class="font-semibold text-base mt-3 mb-1">Voucher</h4>
+																		<p>Voucher: ${data.voucher}</p>
+																		<p>${document.getElementById("voucherDiscount").innerText}</p>
+																		<h4 class="font-semibold text-base mt-3 mb-1">${
+																			document.getElementById("totalPrice")
+																				.innerText
+																		}</h4>
+																		`;
+									} catch (error) {
+										showErrorMessage(
+											"Failed to parse QR code. Please try again."
+										);
+									}
 								})
 								.catch((err) => {
 									console.error("Unable to scan the QR code:", err);
