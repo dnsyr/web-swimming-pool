@@ -16,15 +16,6 @@
 		/>
 
 		<title>Nilam Public Swimming Pool</title>
-
-		<style>
-			#result {
-				margin-top: 20px;
-			}
-			canvas {
-				display: none;
-			}
-		</style>
 	</head>
 	<body>
 		<!-- Navbar -->
@@ -113,7 +104,7 @@
 			>
 				<h3 class="text-center font-bold text-2xl mt-8">Reservation</h3>
 				<form id="reserveForm" class="card-body">
-					<!-- Data -->
+					<!-- Personal Data -->
 					<h3 class="text-lg font-medium">Personal Data</h3>
 					<div class="form-control">
 						<label class="label">
@@ -158,7 +149,7 @@
 								id="ticketAdult"
 								type="number"
 								value="0"
-								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								class="input rounded-none input-bordered text-[black] font-medium text-center font-bold w-full"
 								disabled
 							/>
 							<input
@@ -193,7 +184,7 @@
 								id="ticketKid"
 								type="number"
 								value="0"
-								class="input input-bordered text-[black] font-medium text-center font-bold w-full"
+								class="input rounded-none input-bordered text-[black] font-medium text-center font-bold w-full"
 								disabled
 							/>
 							<input
@@ -273,7 +264,7 @@
 						<p id="priceSnacks" class="text-base">Snacks & Lunch: No</p>
 						<p id="priceSwimKit" class="text-base">Swimming Kit: No</p>
 						<h4 class="font-medium text-lg">Voucher</h4>
-						<p id="voucherInfo" class="text-base">Voucher: Invalid</p>
+						<p id="voucherInfo" class="text-base">Code: Invalid</p>
 						<p id="voucherDiscount" class="text-base">Discount: - Rp0,000</p>
 						<h4 id="totalPrice" class="font-medium text-lg mt-8">
 							Total Price: Rp0,000
@@ -297,27 +288,30 @@
 				<h3 class="text-lg font-bold">Thanks for Reserved!</h3>
 				<p class="py-4">Please save QR Code and scan QR at Gate later!</p>
 
-				<div id="qrcode"></div>
+				<img id="qrcode" alt="QR Code will appear here" class="w-30 h-30" />
 				<a
-					class="mt-2 mb-5 font-semibold text-lg"
-					id="downloadLink"
+					class="mt-4 btn btn-success rounded-lg mb-5 font-semibold text-lg"
+					id="downloadQRBtn"
 					download="qrcode.png"
 					>Download QR Code</a
 				>
 
+				<button class="btn btn-info rounded-lg" id="scanQRBtn">
+					Scan QR Code
+				</button>
 				<input
 					type="file"
 					id="fileInput"
 					accept="image/*"
-					class="file-input file-input-bordered file-input-accent w-full max-w-xs"
+					class="file-input hidden file-input-bordered file-input-accent w-full max-w-xs"
 				/>
 
-				<canvas id="canvas" class="w-0 h-0"></canvas>
-				<div id="reader"></div>
+				<pre id="decodedText"></pre>
+
 				<div class="modal-action">
 					<form method="dialog">
 						<!-- if there is a button in form, it will close the modal -->
-						<button class="btn btn-accent">Close</button>
+						<button class="btn btn-accent rounded-lg">Close</button>
 					</form>
 				</div>
 			</div>
@@ -343,7 +337,6 @@
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
 				></iframe>
-				>
 			</nav>
 			<aside class="grid-flow-row justify-items-center items-center gap-5">
 				<svg
@@ -425,119 +418,183 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 		<script>
+			let currentQRCodeURL = "";
+			let price = {
+				adult: 0,
+				kid: 0,
+				snacks: 0,
+				swimKit: 0,
+				discount: 0,
+				totalTicket: 0,
+				totalPrice: 0,
+			};
+
 			document
 				.getElementById("reserveForm")
-				.addEventListener("submit", function (event) {
-					event.preventDefault();
+				.addEventListener("submit", function (e) {
+					e.preventDefault();
+					const data = {
+						email: document.getElementById("email").value,
+						name: document.getElementById("name").value,
+						ticketAdult: document.getElementById("ticketAdult").value,
+						ticketKid: document.getElementById("ticketKid").value,
+						snacks: document.getElementById("snacksLunch").checked,
+						swimKit: document.getElementById("swimKit").checked,
+						voucher: document.getElementById("voucher").value
+							? document.getElementById("voucher").value
+							: "Invalid",
+						discount: checkDiscountForReceipt(),
+					};
 
-					if (
-						document.getElementById("ticketAdult").value == 0 &&
-						document.getElementById("ticketKid").value == 0
-					) {
-						alert("Please reserved 1 ticket!");
-						return;
+					const qrText = `Personal Data\nEmail: ${data.email}\nName: ${
+						data.name
+					}\n\nTicket\nAdult: ${countTotalPriceForReceipt(
+						"adult"
+					)}\nKid: ${countTotalPriceForReceipt(
+						"kid"
+					)}\n\nAdditional\nSnacks & Lunch: ${
+						data.snacks ? countTotalPriceForReceipt("snacks") : "No"
+					}\nSwimming Kit: ${
+						data.swimKit ? countTotalPriceForReceipt("swimKit") : "No"
+					}\n\nVoucher\nCode: ${data.voucher}\nDiscount: ${
+						data.discount
+					}\n\nTotal Price: ${countTotalPriceForReceipt("totalPrice")}`;
+
+					currentQRCodeURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
+						qrText
+					)}&size=200x200`;
+
+					document.getElementById("qrcode").src = currentQRCodeURL;
+
+					document.getElementById("confirmModal").showModal();
+				});
+
+			document
+				.getElementById("downloadQRBtn")
+				.addEventListener("click", function () {
+					if (currentQRCodeURL) {
+						fetch(currentQRCodeURL)
+							.then((response) => response.blob())
+							.then((blob) => {
+								const url = window.URL.createObjectURL(blob);
+								const a = document.createElement("a");
+								a.style.display = "none";
+								a.href = url;
+								a.download = "qrcode.png";
+								document.body.appendChild(a);
+								a.click();
+								window.URL.revokeObjectURL(url);
+								document.body.removeChild(a);
+							})
+							.catch(() => alert("Failed to download QR code."));
 					} else {
-						// Create an object from form inputs
-						let data = {
-							email: document.getElementById("email").value,
-							name: document.getElementById("name").value,
-							ticketAdult: document.getElementById("ticketAdult").value,
-							ticketKid: document.getElementById("ticketKid").value,
-							snacksLunch: document.getElementById("snacksLunch").checked
-								? "Yes"
-								: "No",
-							swimKit: document.getElementById("swimKit").checked
-								? "Yes"
-								: "No",
-							voucher: document.getElementById("voucher").value
-								? document.getElementById("voucher").value
-								: "Invalid",
-						};
-
-						// Convert object to JSON string
-						const jsonData = JSON.stringify(data);
-
-						const qrcodeContainer = document.getElementById("qrcode");
-						qrcodeContainer.innerHTML = ""; // Clear previous QR code
-						const qrCode = new QRCode(qrcodeContainer, {
-							text: jsonData,
-							width: 128,
-							height: 128,
-						});
-
-						// Wait for QR code to be generated
-						setTimeout(() => {
-							// Convert QR code to data URL and create a download link
-							const canvas = qrcodeContainer.querySelector("canvas");
-							const dataUrl = canvas.toDataURL("image/png");
-							const downloadLink = document.getElementById("downloadLink");
-							downloadLink.href = dataUrl;
-							downloadLink.style.display = "block";
-
-							document.getElementById("confirmModal").showModal();
-						}, 500);
+						alert("Please generate a QR code first.");
 					}
 				});
 
-			// Handle file input change event to scan QR code
 			document
-				.getElementById("fileInput")
-				.addEventListener("change", function () {
-					const file = this.files[0];
-					if (!file) return;
-
-					const reader = new FileReader();
-					reader.onload = function (e) {
-						const image = new Image();
-						image.onload = function () {
-							const canvas = document.getElementById("canvas");
-							const context = canvas.getContext("2d");
-							canvas.width = image.width;
-							canvas.height = image.height;
-							context.drawImage(image, 0, 0);
-							html5QrCode
-								.scanFile(file, true)
-								.then((decodedText) => {
-									try {
-										const data = JSON.parse(decodedText);
-										document.getElementById("reader").innerHTML = `
-			                              <h3 class="text-center font-semibold text-lg my-2">Scanned Data</h3>
-																		<h4 class="font-semibold text-base mt-3 mb-1">Personal Data</h4>
-			                              <p>Email: ${data.email}</p>
-			                              <p>Name: ${data.name}</p>
-																		<h4 class="font-semibold text-base mt-3 mb-1">Ticket</h4>
-																		<p>Adult: ${data.ticketAdult}</p>
-																		<p>Kid: ${data.ticketKid}</p>
-																		<h4 class="font-semibold text-base mt-3 mb-1">Additional</h4>
-																		<p>Snacks & Lunch: ${data.snacksLunch}</p>
-																		<p>Swim Kit: ${data.swimKit}</p>
-																		<h4 class="font-semibold text-base mt-3 mb-1">Voucher</h4>
-																		<p>Voucher: ${data.voucher}</p>
-																		<p>${document.getElementById("voucherDiscount").innerText}</p>
-																		<h4 class="font-semibold text-base mt-3 mb-1">${
-																			document.getElementById("totalPrice")
-																				.innerText
-																		}</h4>
-																		`;
-									} catch (error) {
-										showErrorMessage(
-											"Failed to parse QR code. Please try again."
-										);
-									}
-								})
-								.catch((err) => {
-									console.error("Unable to scan the QR code:", err);
-									document.getElementById("reader").innerText =
-										"Unable to scan the QR code.";
-								});
-						};
-						image.src = e.target.result;
-					};
-					reader.readAsDataURL(file);
+				.getElementById("scanQRBtn")
+				.addEventListener("click", function () {
+					document.getElementById("fileInput").click();
 				});
 
-			// Initialize the QR code scanner
-			const html5QrCode = new Html5Qrcode("reader");
+			document
+				.getElementById("fileInput")
+				.addEventListener("change", (event) => {
+					const file = event.target.files[0];
+					if (file) {
+						const formData = new FormData();
+						formData.append("file", file);
+
+						fetch("https://api.qrserver.com/v1/read-qr-code/", {
+							method: "POST",
+							body: formData,
+						})
+							.then((response) => response.json())
+							.then((result) => {
+								const decodedTextValue = result[0]?.symbol[0]?.data;
+								if (decodedTextValue) {
+									document.getElementById("decodedText").textContent =
+										decodedTextValue;
+								} else {
+									document.getElementById("decodedText").textContent =
+										"No QR code found or unable to decode.";
+								}
+							})
+							.catch((err) => {
+								console.error("Error decoding QR code:", err);
+							});
+					}
+				});
+
+			let checkDiscountForReceipt = () => {
+				switch (document.getElementById("voucher").value) {
+					case "D10000":
+						price.discount = 10;
+						return "- Rp10,000";
+						break;
+					case "D20000":
+						price.discount = 20;
+						return "- Rp20,000";
+						break;
+					case "DS50000":
+						price.discount = 50;
+						return "- Rp50,000";
+						break;
+					case "DX100000":
+						price.discount = 100;
+						return "- Rp100,000";
+						break;
+					case "DM375000":
+						price.discount = 275;
+						return "- Rp375,000";
+						break;
+					default:
+						price.discount = 0;
+						return "- Rp0,000";
+						break;
+				}
+			};
+
+			let countTotalPriceForReceipt = (typePrice) => {
+				let adult = parseInt(document.getElementById("ticketAdult").value);
+				let kid = parseInt(document.getElementById("ticketKid").value);
+				let snacks = document.getElementById("snacksLunch");
+				let swimKit = document.getElementById("swimKit");
+				let totalTicket = adult + kid;
+				let result;
+
+				switch (typePrice) {
+					case "adult":
+						result = adult * 30;
+						return `${adult} x Rp30,000 = Rp${result},000`;
+						break;
+					case "kid":
+						result = kid * 25;
+						return `${kid} x Rp25,000 = Rp${result},000`;
+						break;
+					case "snacks":
+						result = totalTicket * 20;
+						return `${totalTicket} x Rp20,000 = Rp${result},000`;
+						break;
+					case "swimKit":
+						result = totalTicket * 15;
+						return `${totalTicket} x Rp15,000 = Rp${result},000`;
+						break;
+					case "totalPrice":
+						result =
+							adult * 30 +
+							kid * 25 +
+							(snacks.checked ? totalTicket * 20 : 0) +
+							(swimKit.checked ? totalTicket * 15 : 0) -
+							price.discount;
+						return `Rp${result},000`;
+						break;
+					default:
+						console.log("countTotalPriceForReceipt", "error pass data");
+						break;
+				}
+			};
 		</script>
 	</body>
 </html>

@@ -27,32 +27,32 @@ const listDiscountVoucher = {
 let checkDiscount = () => {
   switch (voucher.value) {
     case "D10000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp10,000`;
       return 10;
       break;
     case "D20000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp20,000`;
       return 20;
       break;
     case "DS50000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp50,000`;
       return 50;
       break;
     case "DX100000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp100,000`;
       return 100;
       break;
     case "DM375000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp375,000`;
       return 375;
       break;
     default:
-      voucherInfo.innerHTML = `Voucher: Invalid`;
+      voucherInfo.innerHTML = `Code: Invalid`;
       voucherDiscount.innerHTML = `Discount: - Rp0,000`;
       return 0;
       break;
@@ -67,13 +67,6 @@ const countTotalPrice = () => {
   let discount = checkDiscount();
 
   let resultTicket = (countTicketAdult * 30) + (countTicketKid * 25) + (snacksLunch.checked ? countTicket * 20 : 0) + (swimKit.checked ? countTicket * 15 : 0);
-
-  // if (snacksLunch.checked) {
-  //   resultTicket + countTicket * 20;
-  // }
-  // if (swimKit.checked) {
-  //   resultTicket + countTicket * 15;
-  // }
 
   let result = resultTicket - discount;
   totalPrice.innerHTML = `Total Price: Rp${result},000`
