@@ -1,0 +1,51 @@
+.fasilitas {
+    padding: 2rem 0;
+    /* display: flex; */
+    /* justify-content: ce; */
+}
+
+  /* row */
+
+.fasilitas .row {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+}
+
+.fasilitas .row .card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 17vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 0.4rem;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+.fasilitas .row .card img{
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.fasilitas .row .foto{
+    width: 50%;
+    padding: 0 2rem;
+}
+.fasilitas .row .judul{
+    width: 50%;
+}
+
+.fasilitas .row .judul h1{
+    font-size: 2rem;
+}
+
+.fasilitas .row .foto img{
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
