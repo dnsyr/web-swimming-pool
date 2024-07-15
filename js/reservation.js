@@ -1,4 +1,5 @@
 // Element Variables
+const date = document.getElementById("datePicker");
 const ticketAdult = document.getElementById("ticketAdult");
 const hiddenTicketAdult = document.getElementById("hiddenTicketAdult");
 const ticketKid = document.getElementById("ticketKid");
@@ -7,6 +8,7 @@ const snacksLunch = document.getElementById("snacksLunch");
 const swimKit = document.getElementById("swimKit");
 const voucher = document.getElementById("voucher");
 
+const priceDate = document.getElementById("priceDate");
 const priceTicketAdult = document.getElementById("priceTicketAdult");
 const priceTicketKid = document.getElementById("priceTicketKid");
 const priceSnacks = document.getElementById("priceSnacks");
@@ -114,6 +116,9 @@ let decrementTicketKid = () => {
 updateValueTicketAdult(hiddenTicketAdult.value)
 updateValueTicketKid(hiddenTicketKid.value)
 
+date.addEventListener('change', function () {
+  priceDate.innerHTML = `Reservation Date: ${date.value}`
+})
 hiddenTicketAdult.addEventListener('valueChanged', function () {
   let countTicketAdult = parseInt(hiddenTicketAdult.value);
   countTotalPrice();
