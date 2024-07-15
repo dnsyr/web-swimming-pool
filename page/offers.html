@@ -1,202 +1,275 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="nord">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../img/pool-icon.png" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/offers.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		/>
 
-	<link rel="shortcut icon" href="../img/pool-icon.png" type="image/x-icon" />
-	<link rel="stylesheet" href="../css/index.css" />
-	<link rel="stylesheet" href="../css/offers.css" />
-	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+		<title>Nilam Public Swimming Pool</title>
+	</head>
 
-	<title>Nilam Public Swimming Pool</title>
-</head>
-
-<body>
-	<!-- Navbar -->
-	<div class="sticky top-0 z-50 navbar bg-secondary text-secondary-content">
-		<div class="navbar-start">
-			<div class="dropdown">
-				<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-						stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h7" />
-					</svg>
+	<body>
+		<!-- Navbar -->
+		<div class="sticky top-0 z-50 navbar bg-secondary text-secondary-content">
+			<div class="navbar-start">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h7"
+							/>
+						</svg>
+					</div>
+					<ul
+						tabindex="0"
+						class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+					>
+						<li>
+							<a href="home.html">Home</a>
+						</li>
+						<li>
+							<a href="gallery.html">Gallery</a>
+						</li>
+						<li>
+							<a href="services-&-facilities.html">Services & Facilities</a>
+						</li>
+						<li>
+							<a href="offers.html" class="active">Offers</a>
+						</li>
+						<li>
+							<a href="reservation.html">Reservation</a>
+						</li>
+						<li>
+							<a href="reviews.html">Reviews</a>
+						</li>
+					</ul>
 				</div>
-				<ul tabindex="0"
-					class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-					<li>
-						<a href="home.html">Home</a>
-					</li>
-					<li>
-						<a href="gallery.html">Gallery</a>
-					</li>
-					<li>
-						<a href="services-&-facilities.html">Services & Facilities</a>
-					</li>
-					<li>
-						<a href="offers.html" class="active">Offers</a>
-					</li>
-					<li>
-						<a href="reservation.html">Reservation</a>
-					</li>
-					<li>
-						<a href="reviews.html">Reviews</a>
-					</li>
-				</ul>
+			</div>
+			<div class="navbar-center">
+				<a class="text-xl font-bold" href="home-page.html">Nilam Pool</a>
+			</div>
+			<div class="navbar-end">
+				<label class="swap swap-rotate">
+					<!-- this hidden checkbox controls the state -->
+					<input type="checkbox" class="theme-controller" value="dim" />
+
+					<!-- sun icon -->
+					<i class="swap-off fa-xl fa-solid fa-sun"></i>
+
+					<!-- moon icon -->
+					<i class="swap-on fa-xl fa-solid fa-moon"></i>
+				</label>
 			</div>
 		</div>
-		<div class="navbar-center">
-			<a class="text-xl font-bold" href="home-page.html">Nilam Pool</a>
-		</div>
-		<div class="navbar-end">
-			<label class="swap swap-rotate">
-				<!-- this hidden checkbox controls the state -->
-				<input type="checkbox" class="theme-controller" value="dim" />
+		<!-- End Navbar -->
 
-				<!-- sun icon -->
-				<i class="swap-off fa-xl fa-solid fa-sun"></i>
-
-				<!-- moon icon -->
-				<i class="swap-on fa-xl fa-solid fa-moon"></i>
-			</label>
-		</div>
-	</div>
-	<!-- End Navbar -->
-
-	<!-- Offers Page -->
-	<div class="px-64 py-10">
-		<div class="carousel w-full overflow-hidden relative rounded-2xl shadow-2xl" id="carousel">
-			<div class="carousel-inner flex transition-transform duration-500">
-				<div id="item1" class="carousel-item w-full flex-shrink-0">
-					<img src="../img/9.jpg" class="w-full" alt="Slide 1" />
-				</div>
-				<div id="item2" class="carousel-item w-full flex-shrink-0">
-					<img src="../img/10.jpg" class="w-full" alt="Slide 2" />
-				</div>
-				<div id="item3" class="carousel-item w-full flex-shrink-0">
-					<img src="../img/11.jpg" class="w-full" alt="Slide 3" />
-				</div>
-				<div id="item4" class="carousel-item w-full flex-shrink-0">
-					<img src="../img/12.jpg" class="w-full" alt="Slide 4" />
+		<!-- Offers Page -->
+		<div class="px-64 py-10">
+			<div
+				class="carousel w-full overflow-hidden relative rounded-2xl shadow-2xl"
+				id="carousel"
+			>
+				<div class="carousel-inner flex transition-transform duration-500">
+					<div id="item1" class="carousel-item w-full flex-shrink-0">
+						<img src="../img/9.jpg" class="w-full" alt="Slide 1" />
+					</div>
+					<div id="item2" class="carousel-item w-full flex-shrink-0">
+						<img src="../img/10.jpg" class="w-full" alt="Slide 2" />
+					</div>
+					<div id="item3" class="carousel-item w-full flex-shrink-0">
+						<img src="../img/11.jpg" class="w-full" alt="Slide 3" />
+					</div>
+					<div id="item4" class="carousel-item w-full flex-shrink-0">
+						<img src="../img/12.jpg" class="w-full" alt="Slide 4" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<header class="header">
-		<h1>Penawaran Spesial</h1>
-	</header>
-	<main class="main-content">
-		<section class="offer">
-			<img src="../img/kolam-renang-anak.jpeg" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Penawaran Terbaik Hari Ini</h2>
-				<p>Jangan lewatkan kesempatan untuk mendapatkan produk terbaik dengan harga spesial.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-		<section class="offer">
-			<img src="../img/penyewaan-ban.jpeg" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Penawaran Menarik Bulan Ini</h2>
-				<p>Dapatkan diskon besar-besaran untuk produk-produk pilihan bulan ini.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-		<section class="offer">
-			<img src="../img/pool.png" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Penawaran Spesial Akhir Pekan</h2>
-				<p>Nikmati penawaran spesial akhir pekan dengan harga terbaik.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-		<section class="offer">
-			<img src="../img/kantin.jpeg" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Dapatkan Fasilitas Kantin Yang Ada</h2>
-				<p>Nikmati penawaran spesial bulan ini dengan harga terjangkau.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-		<section class="offer">
-			<img src="../img/sewa-ban.jpeg" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Penawaran Penyewaan Ban</h2>
-				<p>Dapatkan penawaran fasilitas tambahan.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-		<section class="offer">
-			<img src="../img/ruang-ganti.jpeg" alt="Special Offer"
-				class="offer-img">
-			<div class="offer-details">
-				<h2>Ada Pun Fasilitas Ruang Ganti</h2>
-				<p>Nikmati fasilitas ini dengan gratis.</p>
-				<button class="btn btn-primary">Dapatkan Sekarang</button>
-			</div>
-		</section>
-	</main>
-	<!-- End Offers Page -->
+		<header class="header bg-neutral text-neutral-content">
+			<h2 class="text-xl font-semibold">Special Offers</h2>
+		</header>
+		<main class="main-content">
+			<section class="offer bg-neutral">
+				<img
+					src="../img/kolam-renang-anak.jpeg"
+					alt="Special Offer"
+					class="offer-img"
+				/>
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-neutral-content">
+						Penawaran Terbaik Hari Ini
+					</h2>
+					<p class="text-neutral-content">
+						Jangan lewatkan kesempatan untuk mendapatkan produk terbaik dengan
+						harga spesial.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+			<section class="offer bg-neutral">
+				<img
+					src="../img/penyewaan-ban.jpeg"
+					alt="Special Offer"
+					class="offer-img"
+				/>
+				<div class="offer-details">
+					<h2 class="font-semibold text-lg text-neutral-content">
+						Penawaran Menarik Bulan Ini
+					</h2>
+					<p class="text-neutral-content">
+						Dapatkan diskon besar-besaran untuk produk-produk pilihan bulan ini.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+			<section class="offer bg-neutral">
+				<img src="../img/pool.png" alt="Special Offer" class="offer-img" />
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-neutral-content">
+						Penawaran Spesial Akhir Pekan
+					</h2>
+					<p class="text-neutral-content">
+						Nikmati penawaran spesial akhir pekan dengan harga terbaik.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+			<section class="offer bg-neutral">
+				<img src="../img/kantin.jpeg" alt="Special Offer" class="offer-img" />
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-neutral-content">
+						Dapatkan Fasilitas Kantin Yang Ada
+					</h2>
+					<p class="text-neutral-content">
+						Nikmati penawaran spesial bulan ini dengan harga terjangkau.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+			<section class="offer bg-neutral">
+				<img src="../img/sewa-ban.jpeg" alt="Special Offer" class="offer-img" />
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-neutral-content">
+						Penawaran Penyewaan Ban
+					</h2>
+					<p class="text-neutral-content">
+						Dapatkan penawaran fasilitas tambahan.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+			<section class="offer bg-neutral">
+				<img
+					src="../img/ruang-ganti.jpeg"
+					alt="Special Offer"
+					class="offer-img"
+				/>
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-neutral-content">
+						Ada Pun Fasilitas Ruang Ganti
+					</h2>
+					<p class="text-neutral-content">
+						Nikmati fasilitas ini dengan gratis.
+					</p>
+					<button class="btn btn-primary mt-5 rounded-xl">
+						Dapatkan Sekarang
+					</button>
+				</div>
+			</section>
+		</main>
+		<!-- End Offers Page -->
 
-	<!-- Footer -->
-	<footer class="footer bg-secondary text-secondary-content p-10 items-center">
-		<nav>
-			<h6 class="footer-title">Location</h6>
-			<iframe class="rounded" width="500" height="300" frameborder="0" scrolling="no" marginheight="0"
-				marginwidth="0"
-				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1982.9259081418036!2d106.87306403840144!3d-6.283202432326569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f28e678fbc9f%3A0xbedbf07d7e3182e7!2sKolam%20Renang%20Nilam%20Kramat%20Jati!5e0!3m2!1sen!2sus!4v1719221456059!5m2!1sen!2sus"
-				allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		</nav>
-		<aside class="grid-flow-row justify-items-center items-center gap-5">
-			<i class="fa-solid fa-person-swimming fa-3x fa-flip-horizontal"></i>
+		<!-- Footer -->
+		<footer
+			class="footer bg-secondary text-secondary-content p-10 items-center"
+		>
+			<nav>
+				<h6 class="footer-title">Location</h6>
+				<iframe
+					class="rounded"
+					width="500"
+					height="300"
+					frameborder="0"
+					scrolling="no"
+					marginheight="0"
+					marginwidth="0"
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1982.9259081418036!2d106.87306403840144!3d-6.283202432326569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f28e678fbc9f%3A0xbedbf07d7e3182e7!2sKolam%20Renang%20Nilam%20Kramat%20Jati!5e0!3m2!1sen!2sus!4v1719221456059!5m2!1sen!2sus"
+					allowfullscreen=""
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+				></iframe>
+			</nav>
+			<aside class="grid-flow-row justify-items-center items-center gap-5">
+				<i class="fa-solid fa-person-swimming fa-3x fa-flip-horizontal"></i>
 
-			<div class="text-center">
-				<p class="text-xl font-bold mb-2">Nilam Public Swimming Pool</p>
-				<p class="text-base font-bold mt-0">
-					Providing swimming pool since 2016
-				</p>
-			</div>
+				<div class="text-center">
+					<p class="text-xl font-bold mb-2">Nilam Public Swimming Pool</p>
+					<p class="text-base font-bold mt-0">
+						Providing swimming pool since 2016
+					</p>
+				</div>
 
-			<div class="grid grid-flow-col gap-4">
-				<a>
-					<i class="fa-brands fa-x-twitter fa-xl"></i>
-				</a>
-				<a>
-					<i class="fa-brands fa-youtube fa-xl"></i>
-				</a>
-				<a>
-					<i class="fa-brands fa-facebook-f fa-xl"></i>
-				</a>
-				<a>
-					<i class="fa-brands fa-whatsapp fa-xl"></i>
-				</a>
-			</div>
+				<div class="grid grid-flow-col gap-4">
+					<a>
+						<i class="fa-brands fa-x-twitter fa-xl"></i>
+					</a>
+					<a>
+						<i class="fa-brands fa-youtube fa-xl"></i>
+					</a>
+					<a>
+						<i class="fa-brands fa-facebook-f fa-xl"></i>
+					</a>
+					<a>
+						<i class="fa-brands fa-whatsapp fa-xl"></i>
+					</a>
+				</div>
 
-			<div>
-				<p class="text-sm">
-					Copyright © 2024 - All right reserved by Nilam Swimming Pool
-				</p>
-			</div>
-		</aside>
-	</footer>
-	<!-- End Footer -->
+				<div>
+					<p class="text-sm">
+						Copyright © 2024 - All right reserved by Nilam Swimming Pool
+					</p>
+				</div>
+			</aside>
+		</footer>
+		<!-- End Footer -->
 
-	<script src="../js/index.js"></script>
-	<script type="module">
-		import { myModule } from "../js/tailwind.config.js";
-		myModule();
-	</script>
-	<script src="https://cdn.tailwindcss.com"></script>
-</body>
-
+		<script src="../js/index.js"></script>
+		<script type="module">
+			import { myModule } from "../js/tailwind.config.js";
+			myModule();
+		</script>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</body>
 </html>

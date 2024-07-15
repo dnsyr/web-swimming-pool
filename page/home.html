@@ -6,6 +6,7 @@
 
 		<link rel="shortcut icon" href="../img/pool-icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/services-facilities.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css"
 			rel="stylesheet"
@@ -83,6 +84,7 @@
 		<!-- End Navbar -->
 
 		<!-- Home Page -->
+		<!-- Landing View -->
 		<div
 			class="hero min-h-screen"
 			style="background-image: url(../img/pool-hero.png)"
@@ -131,53 +133,54 @@
 
 		<!-- Gallery Photos -->
 		<div class="px-16 mt-10">
+			<div class="divider divider-start divider-accent text-xl font-semibold mb-10 text-accent">Gallery</div>
 			<div class="grid grid-cols-4 gap-4">
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/1.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 1"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/2.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 2"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/3.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 3"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/4.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 4"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/5.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 5"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/8.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 6"
 					/>
 				</div>
 				<div class="col-span-1">
 					<img
-						src="https://via.placeholder.com/150"
-						class="w-full h-auto rounded-xl"
+						src="../img/7.jpg"
+						class="w-full h-[350px] rounded-xl"
 						alt="Image 7"
 					/>
 				</div>
@@ -186,67 +189,92 @@
 						href="gallery.html"
 						class="btn btn-accent text-accent-content p-2 rounded-xl"
 					>
-						See More Gallery <i class="fa-solid fa-arrow-right"></i>
+						See More <i class="fa-solid fa-arrow-right"></i>
 					</a>
 				</div>
 			</div>
+		<div class="divider divider-accent mt-10"></div>
 		</div>
 
-		<!-- Carousel Services & Facilities -->
-		<div class="px-16 py-10">
-			<div class="flex justify-between items-center mb-10">
-				<h2
-					class="text-lg bg-accent py-2 px-4 rounded-e-xl text-accent-content font-bold"
-				>
-					Services & Facilities
-				</h2>
+		<!-- Card Services & Facilities -->
+			<div class="px-16 my-10 divider divider-start divider-accent text-xl font-semibold text-accent">Services & Facilities</div>
+		<main class="main-content pt-4">
+			<section class="offer">
+				<img src="../img/pool.png" alt="Special Offer" class="offer-img" />
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-primary">Kolam Renang Dewasa</h2>
+					<p class="text-justify">
+						Kolam renang dewasa kami memiliki panjang 50 meter dengan kedalaman
+						bervariasi dari 1,2 hingga 2 meter. Kolam ini dilengkapi dengan
+						sistem pemanas air dan area berjemur yang nyaman
+					</p>
+				</div>
+			</section>
+			<section class="offer">
+				<img
+					src="../img/kolam-renang-anak.jpeg"
+					alt="Special Offer"
+					class="offer-img"
+				/>
+				<div class="offer-details">
+					<h2 class="font-semibold text-l text-primary">Kolam Renang Anak</h2>
+					<p class="text-justify">
+						kolam renang anak kami memiliki beberapa wahana bermain untuk anak.
+					</p>
+				</div>
+			</section>
+			<div class="flex items-center">
 				<a
 					href="services-&-facilities.html"
 					class="btn btn-accent text-accent-content p-2 rounded-xl"
 				>
 					See More <i class="fa-solid fa-arrow-right"></i>
 				</a>
-			</div>
+			</dic>
+		</main>
+		<div class="px-16 divider divider-accent mt-5"></div>
+
+		<!-- Carousel Special Offers -->
+		<div class="flex justify-between items-center mt-10 px-16">
+			<h2
+				class="text-lg bg-accent py-2 px-4 rounded-e-xl text-accent-content font-bold"
+			>
+				Special Offers
+			</h2>
+			<a
+				href="offers.html"
+				class="btn btn-accent text-accent-content p-2 rounded-xl"
+			>
+				See More <i class="fa-solid fa-arrow-right"></i>
+			</a>
+		</div>
+		<div class="px-64 py-10">
 			<div
 				class="carousel w-full overflow-hidden relative rounded-2xl shadow-2xl"
 				id="carousel"
 			>
 				<div class="carousel-inner flex transition-transform duration-500">
 					<div id="item1" class="carousel-item w-full flex-shrink-0">
-						<img
-							src="https://via.placeholder.com/800x400?text=Slide+1"
-							class="w-full"
-							alt="Slide 1"
-						/>
+						<img src="../img/9.jpg" class="w-full" alt="Slide 1" />
 					</div>
 					<div id="item2" class="carousel-item w-full flex-shrink-0">
-						<img
-							src="https://via.placeholder.com/800x400?text=Slide+2"
-							class="w-full"
-							alt="Slide 2"
-						/>
+						<img src="../img/10.jpg" class="w-full" alt="Slide 2" />
 					</div>
 					<div id="item3" class="carousel-item w-full flex-shrink-0">
-						<img
-							src="https://via.placeholder.com/800x400?text=Slide+3"
-							class="w-full"
-							alt="Slide 3"
-						/>
+						<img src="../img/11.jpg" class="w-full" alt="Slide 3" />
 					</div>
 					<div id="item4" class="carousel-item w-full flex-shrink-0">
-						<img
-							src="https://via.placeholder.com/800x400?text=Slide+4"
-							class="w-full"
-							alt="Slide 4"
-						/>
+						<img src="../img/8.jpg" class="w-full" alt="Slide 4" />
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="px-16 divider divider-accent my-0"></div>
+
 
 		<!-- Reviews Stat -->
-		<div class="flex w-full justify-center mt-10 mb-20">
-			<div class="stats bg-neutral shadow">
+		<div class="flex w-full justify-center mt-10 mb-12">
+			<div class="stats bg-neutral shadow-2xl">
 				<div class="stat place-items-center">
 					<div class="stat-title text-neutral-content">Visitors</div>
 					<div class="stat-value text-neutral-content">50K+</div>
