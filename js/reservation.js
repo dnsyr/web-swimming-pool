@@ -1,4 +1,5 @@
 // Element Variables
+const date = document.getElementById("datePicker");
 const ticketAdult = document.getElementById("ticketAdult");
 const hiddenTicketAdult = document.getElementById("hiddenTicketAdult");
 const ticketKid = document.getElementById("ticketKid");
@@ -7,6 +8,7 @@ const snacksLunch = document.getElementById("snacksLunch");
 const swimKit = document.getElementById("swimKit");
 const voucher = document.getElementById("voucher");
 
+const priceDate = document.getElementById("priceDate");
 const priceTicketAdult = document.getElementById("priceTicketAdult");
 const priceTicketKid = document.getElementById("priceTicketKid");
 const priceSnacks = document.getElementById("priceSnacks");
@@ -27,32 +29,32 @@ const listDiscountVoucher = {
 let checkDiscount = () => {
   switch (voucher.value) {
     case "D10000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp10,000`;
       return 10;
       break;
     case "D20000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp20,000`;
       return 20;
       break;
     case "DS50000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp50,000`;
       return 50;
       break;
     case "DX100000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp100,000`;
       return 100;
       break;
     case "DM375000":
-      voucherInfo.innerHTML = `Voucher: ${voucher.value}`;
+      voucherInfo.innerHTML = `Code: ${voucher.value}`;
       voucherDiscount.innerHTML = `Discount: - Rp375,000`;
       return 375;
       break;
     default:
-      voucherInfo.innerHTML = `Voucher: Invalid`;
+      voucherInfo.innerHTML = `Code: Invalid`;
       voucherDiscount.innerHTML = `Discount: - Rp0,000`;
       return 0;
       break;
@@ -67,13 +69,6 @@ const countTotalPrice = () => {
   let discount = checkDiscount();
 
   let resultTicket = (countTicketAdult * 30) + (countTicketKid * 25) + (snacksLunch.checked ? countTicket * 20 : 0) + (swimKit.checked ? countTicket * 15 : 0);
-
-  // if (snacksLunch.checked) {
-  //   resultTicket + countTicket * 20;
-  // }
-  // if (swimKit.checked) {
-  //   resultTicket + countTicket * 15;
-  // }
 
   let result = resultTicket - discount;
   totalPrice.innerHTML = `Total Price: Rp${result},000`
@@ -121,6 +116,9 @@ let decrementTicketKid = () => {
 updateValueTicketAdult(hiddenTicketAdult.value)
 updateValueTicketKid(hiddenTicketKid.value)
 
+date.addEventListener('change', function () {
+  priceDate.innerHTML = `Reservation Date: ${date.value}`
+})
 hiddenTicketAdult.addEventListener('valueChanged', function () {
   let countTicketAdult = parseInt(hiddenTicketAdult.value);
   countTotalPrice();
