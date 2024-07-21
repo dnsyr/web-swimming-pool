@@ -4,8 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link rel="shortcut icon" href="../img/pool-icon.png" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/index.css" />
+		<link
+			rel="shortcut icon"
+			href="../../img/pool-icon.png"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="../../css/index.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css"
 			rel="stylesheet"
@@ -44,34 +48,36 @@
 						class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
 					>
 						<li>
-							<a href="home.html">Home</a>
+							<a href="../home.html">Home</a>
 						</li>
 						<li>
-							<a href="gallery.html" class="active">Gallery</a>
+							<a href="../gallery.html">Gallery</a>
 						</li>
 						<li>
-							<a href="services-&-facilities.html">Services & Facilities</a>
+							<a href="../services-&-facilities.html">Services & Facilities</a>
 						</li>
 						<li>
-							<a href="offers.html">Offers</a>
+							<a href="../offers.html">Offers</a>
 						</li>
 						<li>
-							<a href="reservation.html">Reservation</a>
+							<a href="../reservation.html">Reservation</a>
 						</li>
 						<li>
-							<a href="reviews.html">Reviews</a>
+							<a href="../reviews.html">Reviews</a>
 						</li>
 						<div id="adminLinkDivider" class="divider divider-start hidden">
 							Admin
 						</div>
 						<li id="adminLink" class="hidden">
-							<a href="admin/reservation-list.html">Reservation List</a>
+							<a href="admin/reservation-list.html" class="active"
+								>Reservation List</a
+							>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="navbar-center">
-				<a class="text-xl font-bold" href="home.html">Nilam Pool</a>
+				<a class="text-xl font-bold" href="../home.html">Nilam Pool</a>
 			</div>
 			<div class="navbar-end">
 				<div class="dropdown dropdown-end">
@@ -117,65 +123,29 @@
 		</div>
 		<!-- End Navbar -->
 
-		<!-- Gallery Page -->
+		<!-- Reservation List Page -->
 		<div class="px-16 my-10">
-			<div class="grid grid-cols-4 gap-4">
-				<div class="col-span-1">
-					<img
-						src="../img/1.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 1"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/2.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 2"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/3.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 3"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/4.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 4"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/5.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 5"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/6.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 6"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/7.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 7"
-					/>
-				</div>
-				<div class="col-span-1">
-					<img
-						src="../img/8.jpg"
-						class="w-full h-[350px] rounded-xl"
-						alt="Image 8"
-					/>
-				</div>
+			<h2 class="texl-xl font-bold text-accent-content mb-8">
+				Reservation List
+			</h2>
+			<div class="h-96 overflow-x-auto">
+				<table class="table table-pin-rows table-pin-cols">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<td>Email</td>
+							<td>Name</td>
+							<td>Date</td>
+							<td>Adult Ticket</td>
+							<td>Kid Ticket</td>
+							<td>Snacks & Lunch</td>
+							<td>Swimming Kit</td>
+							<td>Voucher</td>
+							<td>Discount</td>
+						</tr>
+					</thead>
+					<tbody id="reservationTableBody"></tbody>
+				</table>
 			</div>
 		</div>
 
@@ -220,7 +190,7 @@
 
 		<!-- Toast Status Login -->
 		<div id="loginStatus" class="toast"></div>
-		<!-- End Gallery Page -->
+		<!-- End Reservation List Page -->
 
 		<!-- Footer -->
 		<footer
@@ -276,10 +246,11 @@
 		</footer>
 		<!-- End Footer -->
 
-		<script src="../js/index.js"></script>
-		<script src="../js/login.js"></script>
+		<script src="../../js/index.js"></script>
+		<script src="../../js/login.js"></script>
+		<script src="../../js/reservation-list.js"></script>
 		<script type="module">
-			import { myModule } from "../js/tailwind.config.js";
+			import { myModule } from "../../js/tailwind.config.js";
 			myModule();
 		</script>
 		<script src="https://cdn.tailwindcss.com"></script>

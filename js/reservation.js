@@ -30,32 +30,32 @@ let checkDiscount = () => {
   switch (voucher.value) {
     case "D10000":
       voucherInfo.innerHTML = `Code: ${voucher.value}`;
-      voucherDiscount.innerHTML = `Discount: - Rp10,000`;
+      voucherDiscount.innerHTML = `Discount: Rp10,000`;
       return 10;
       break;
     case "D20000":
       voucherInfo.innerHTML = `Code: ${voucher.value}`;
-      voucherDiscount.innerHTML = `Discount: - Rp20,000`;
+      voucherDiscount.innerHTML = `Discount: Rp20,000`;
       return 20;
       break;
     case "DS50000":
       voucherInfo.innerHTML = `Code: ${voucher.value}`;
-      voucherDiscount.innerHTML = `Discount: - Rp50,000`;
+      voucherDiscount.innerHTML = `Discount: Rp50,000`;
       return 50;
       break;
     case "DX100000":
       voucherInfo.innerHTML = `Code: ${voucher.value}`;
-      voucherDiscount.innerHTML = `Discount: - Rp100,000`;
+      voucherDiscount.innerHTML = `Discount: Rp100,000`;
       return 100;
       break;
     case "DM375000":
       voucherInfo.innerHTML = `Code: ${voucher.value}`;
-      voucherDiscount.innerHTML = `Discount: - Rp375,000`;
+      voucherDiscount.innerHTML = `Discount: Rp375,000`;
       return 375;
       break;
     default:
-      voucherInfo.innerHTML = `Code: Invalid`;
-      voucherDiscount.innerHTML = `Discount: - Rp0,000`;
+      voucherInfo.innerHTML = `Code: -`;
+      voucherDiscount.innerHTML = `Discount: Rp0,000`;
       return 0;
       break;
   }

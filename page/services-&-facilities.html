@@ -63,27 +63,63 @@
 						<li>
 							<a href="reviews.html">Reviews</a>
 						</li>
+						<div id="adminLinkDivider" class="divider divider-start hidden">
+							Admin
+						</div>
+						<li id="adminLink" class="hidden">
+							<a href="admin/reservation-list.html">Reservation List</a>
+						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="navbar-center">
-				<a class="text-xl font-bold" href="home-page.html">Nilam Pool</a>
+				<a class="text-xl font-bold" href="home.html">Nilam Pool</a>
 			</div>
 			<div class="navbar-end">
-				<label class="swap swap-rotate">
-					<!-- this hidden checkbox controls the state -->
-					<input type="checkbox" class="theme-controller" value="dim" />
+				<div class="dropdown dropdown-end">
+					<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+						<div class="w-10 rounded-full">
+							<i class="fa-solid fa-user-gear fa-xl"></i>
+						</div>
+					</div>
+					<ul
+						tabindex="0"
+						class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+					>
+						<li id="loginLink" class="">
+							<label for="loginModal" class="font-medium text-accent-content"
+								>Login</label
+							>
+						</li>
+						<li id="logoutLink" class="hidden">
+							<button id="logoutBtn" class="font-medium text-accent-content">
+								Logout
+							</button>
+						</li>
+						<li>
+							<label class="swap swap-rotate flex justify-between">
+								<span class="text-accent-content font-medium"
+									>Change theme</span
+								>
+								<label class="swap swap-rotate">
+									<!-- this hidden checkbox controls the state -->
+									<input type="checkbox" class="theme-controller" value="dim" />
 
-					<!-- sun icon -->
-					<i class="swap-off fa-xl fa-solid fa-sun"></i>
+									<!-- sun icon -->
+									<i class="swap-off fa-l fa-solid fa-sun"></i>
 
-					<!-- moon icon -->
-					<i class="swap-on fa-xl fa-solid fa-moon"></i>
-				</label>
+									<!-- moon icon -->
+									<i class="swap-on fa-l fa-solid fa-moon"></i>
+								</label>
+							</label>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<!-- End Navbar -->
-		<!-- Carousel Services & Facilities -->
+
+		<!-- Services & Facilities Page -->
 		<header class="header mt-8 bg-neutral text-neutral-content">
 			<h1 class="text-lg font-semibold">Fasilitas & Services</h1>
 		</header>
@@ -158,6 +194,48 @@
 				</div>
 			</section>
 		</main>
+
+		<!-- Login Modal -->
+		<input type="checkbox" id="loginModal" class="modal-toggle" />
+		<div class="modal" role="dialog">
+			<div class="modal-box">
+				<form class="card-body">
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Username</span>
+						</label>
+						<input
+							id="username"
+							type="text"
+							placeholder="username"
+							class="input input-bordered"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Password</span>
+						</label>
+						<input
+							id="password"
+							type="password"
+							placeholder="password"
+							class="input input-bordered"
+							required
+						/>
+					</div>
+					<div class="form-control mt-6">
+						<button id="loginBtn" type="button" class="btn btn-primary">
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+			<label class="modal-backdrop" for="loginModal">Close</label>
+		</div>
+
+		<!-- Toast Status Login -->
+		<div id="loginStatus" class="toast"></div>
 		<!-- End Services & Facilities Page -->
 
 		<!-- Footer -->
@@ -215,6 +293,7 @@
 		<!-- End Footer -->
 
 		<script src="../js/index.js"></script>
+		<script src="../js/login.js"></script>
 		<script type="module">
 			import { myModule } from "../js/tailwind.config.js";
 			myModule();
